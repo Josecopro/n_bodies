@@ -8,4 +8,9 @@ from QuadTree import QuadTree
 
 @dataclass
 class Space:
-    pass
+    Bodies: list
+    QuadTree: QuadTree
+
+    def AddBody(self, body: Body):
+        self.Bodies.append(body)
+        self.QuadTree.insert(body)
