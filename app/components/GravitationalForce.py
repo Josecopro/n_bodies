@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from app.components.Body import Body
 
 @dataclass
 class GravitationalForce:
@@ -7,7 +6,7 @@ class GravitationalForce:
     GravityConstant: float
     Cutoff: float
     Dt: float
-    Bodies: list[Body]
+    Bodies: list
 
     def Calculate(self):
         pass

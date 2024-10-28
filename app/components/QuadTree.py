@@ -1,6 +1,6 @@
 from dataclasses import dataclass
-from app.components.Area import Area 
-from app.components.Body import Body
+from Area import Area 
+from Body import Body
 
 @dataclass
 class QuadTree:
@@ -56,5 +56,5 @@ class QuadTree:
 
     def contains(self, body: Body):
         # Verificar si el cuerpo está dentro del área de este nodo
-        x, y = body.x, body.y
+        x, y = body.Position[0], body.Position[1]
         return (0 <= x < self.boundary.Width) and (0 <= y < self.boundary.Height)
