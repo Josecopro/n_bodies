@@ -3,7 +3,7 @@ from typing import List, Union
 
 @dataclass
 class Vector:
-    Position: Positionable
+    Position: List
 
     def __post_init__(self):
         if len(self.Position) != 2:

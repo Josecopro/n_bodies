@@ -6,7 +6,7 @@ class GravitationalForce:
     GravityConstant: float
     Cutoff: float
     Dt: float
-    Bodies: list
+    Bodies: List[Body]
 
     def Calculate(self):
         pass
