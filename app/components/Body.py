@@ -1,6 +1,6 @@
 from dataclasses import dataclass
-from Orbit import Orbit
-from GravitationalForce import GravitationalForce   
+from components.Orbit import Orbit
+from components.GravitationalForce import GravitationalForce   
 import math
 from dataclasses import dataclass, field
 
@@ -39,7 +39,7 @@ class Body:
         :param dt: Paso de tiempo
         """
         self.Position[0] += self.Velocity[0] * dt
-        self.y += self.Velocity[1] * dt
+        self.Position[1] += self.Velocity[1] * dt
 
     def calculate_force(self, other):
         """

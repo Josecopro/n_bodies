@@ -1,6 +1,6 @@
 from dataclasses import dataclass
-from Area import Area 
-from Body import Body
+from components.Area import Area 
+from components.Body import Body
 
 @dataclass
 class QuadTree:

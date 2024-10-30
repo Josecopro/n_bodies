@@ -1,16 +1,16 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from components.Body import Body
 #from Asteroid import Asteroid
 #from Star import Star
 from components.QuadTree import QuadTree
-import components.Area
+from components.Area import Area
 import pygame
 
 
 @dataclass
 class Space:
-    Bodies: list
-    QuadTree: QuadTree
+    Bodies: list = field(default_factory=list)
+    #QuadTree: QuadTree
 
     def AddBody(self, body: Body):
         self.Bodies.append(body)
@@ -25,7 +25,7 @@ class Space:
         # Configuración de Pygame
         pygame.init()
         width, height = WindowHeight, WindowWidth
-        Area = Area(width, height, (0, 0, 0))
+        Espacio = Area(width, height, (0, 0, 0))
 
         # Parámetros de la simulación
         dt = 0.1   # Paso de tiempo
@@ -38,7 +38,7 @@ class Space:
                     running = False
 
             # Crear QuadTree y agregar los cuerpos
-            quadtree = QuadTree(Area, capacity)
+            quadtree = QuadTree(Espacio, capacity)
             for body in bodies:
                 quadtree.insert(body)
 
@@ -58,11 +58,11 @@ class Space:
                 body.update_position(dt)
 
             # Dibujar el espacio y cuerpos
-            Area.draw()
+            Espacio.draw()
             for body in bodies:
-                pygame.draw.circle(Area.screen, (255, 255, 255), (int(body.Position[0]), int(body.Position[1])), 3)
+                pygame.draw.circle(Espacio.screen, (255, 255, 255), (int(body.Position[0]), int(body.Position[1])), 3)
 
             # Actualizar pantalla
-            Area.update()
+            Espacio.update()
 
         pygame.quit()
