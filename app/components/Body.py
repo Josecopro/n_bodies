@@ -1,6 +1,6 @@
 from dataclasses import dataclass
-from Orbit import Orbit
-from GravitationalForce import GravitationalForce   
+from components.Orbit import Orbit
+from components.GravitationalForce import GravitationalForce   
 import math
 from dataclasses import dataclass, field
 
@@ -39,29 +39,5 @@ class Body:
         :param dt: Paso de tiempo
         """
         self.Position[0] += self.Velocity[0] * dt
-        self.y += self.Velocity[1] * dt
+        self.Position[1] += self.Velocity[1] * dt
 
-    def calculate_force(self, other):
-        """
-        Calcula la fuerza gravitacional entre este cuerpo y otro cuerpo `other`.
-
-        :param other: Otro objeto de tipo Body
-        :return: Fuerza en los ejes x e y como una tupla (fx, fy)
-        """
-        G = 6.67430e-11  # Constante de gravitación universal
-        dx = other.Position[0] - self.Position[0]
-        dy = other.Position[1] - self.Position[1]
-        distance = math.sqrt(dx**2 + dy**2)
-
-        # Evitar división por cero al calcular la fuerza
-        if distance == 0:
-            return (0, 0)
-
-        # Ley de gravitación universal: F = G * (m1 * m2) / r^2
-        force = G * (self.mass * other.mass) / (distance**2)
-
-        # Descomponer la fuerza en componentes x e y
-        fx = force * (dx / distance)
-        fy = force * (dy / distance)
-
-        return (fx, fy)
